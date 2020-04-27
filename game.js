@@ -2,8 +2,8 @@ class Game {
     constructor ($canvas){
         this.$canvas = $canvas;
         this.context = this.$canvas.getContext('2d');
-
-        const basePixel = $canvas.width/10;
+        
+        this.basePixel = $canvas.width/25
 
         this.setKeyBindings();
         
@@ -11,13 +11,14 @@ class Game {
     }
     
     reset () {
-        this.character = new Character (this);
+        this.character = new Character (this, 0, 0, 70, 50);
         this.character.x = 300;
         this.character.y = 450;
-        // this.obstacle = new Obstacle (this);
+
         this.background = new Background(this);
 
-        this.obstacle = new Obstacle(this);
+        this.obstacle = new Obstacle(this, 10, 10, 50, 50);
+
 
         this.score = 0; 
         this.speed = 1;
@@ -33,13 +34,13 @@ class Game {
                event.preventDefault();
                this.character.moveLeft('left');
                this.drawGame();
-               console.log('left button pressed ' + this.character.x)
+            //    console.log('left button pressed ' + this.character.x)
                break;
              case 39:
                event.preventDefault();
                this.character.moveRight('right');
                this.drawGame();
-               console.log('right button pressed ' + this.character.x)
+            //    console.log('right button pressed ' + this.character.x)
                break;
            }
         });
@@ -67,26 +68,27 @@ class Game {
     //   }
 
     clearCanvas () {
-        console.log('I ran')
+        console.log('clearCanvas was called')
         this.context.clearRect(0, 0, this.$canvas.width, this.$canvas.height);
-      }
-
-       
+    }
+    
+    
     runLogic () {
-        // this.character.runLogic();
-        // this.obstacle.runLogic;
+        console.log('run logic was called')
+        this.obstacle.runLogic;
     }
 
 
     drawGame () {
         // console.log('draw game is running')
         this.clearCanvas();
-        console.log('canvas was clearded')
-        // this.obstacle.draw;
+        console.log('canvas was run')
         this.background.draw();
         console.log('background was draw')
         this.character.draw();
         console.log('character was draw')
+        this.obstacle.draw();
+        console.log('obstacle was draw')
 
     }
 

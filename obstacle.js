@@ -1,30 +1,38 @@
 class Obstacle {
-    constructor (game) {
+    constructor (game, x, y, width, height) {
         this.game = game;
+        this.game.$canvas = $canvas.width
+        this.basePixel = this.game.basePixel;
+        this.context = this.game.context;
+
+        this.x = x;
+        this.y = y;
+
+        this.width = width;
+        this.height = height
+
+        this.obstacleImage = new Image();
     }
-    
+
     // runLogic () {
-        
-        
-        // }
-        
-        
+
+    // }
+
+    // detectCollision() {
+
+    // }
+
+
     draw () {
-        const context = this.game.context;
-        const obstacleImage = new Image();
-        obstacleImage.width = 70;
-        obstacleImage.height = 50;
-        console.log('initial x is ' + this.x)
+        console.log('draw obstacle called')
 
-        obstacleImage.src = 'images/trampolim.png';
+        this.obstacleImage.src = 'images/pill-red.png';
 
-        obstacleImage.addEventListener('load', () =>{
-            context.drawImage(obstacleImage, this.x, this.y, obstacleImage.width, obstacleImage.height )
+        this.obstacleImage.addEventListener('load', () =>{
+            this.game.context.drawImage(this.obstacleImage, this.x, this.y, this.width, this.height)
         }
         )
-        context.drawImage(obstacleImage, this.x, this.y, obstacleImage.width, obstacleImage.height )
-
+        this.game.context.drawImage(this.obstacleImage, this.x, this.y, this.width, this.height)
     }
-
 
 }
