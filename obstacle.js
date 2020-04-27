@@ -11,7 +11,7 @@ class Obstacle {
         this.width = width;
         this.height = height
 
-        this.speed = 5;
+        this.speed = 1;
 
         this.obstacleImage = new Image();
     }

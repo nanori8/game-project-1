@@ -1,5 +1,5 @@
 class Character {
-    constructor (game, x, y, width, height) {
+    constructor (game, x, y, width, height, score) {
         this.game = game;
         this.game.$canvas = $canvas.width
         this.basePixel = this.game.basePixel;
@@ -10,25 +10,25 @@ class Character {
 
         this.width = width;
         this.height = height;
+        
+        this.score = 0;
 
-        this.characterimage = new Image();
-
+        this.characterimage = new Image();  
+        
+    }
+    
+    detectCollision () {
         const obstacle = this.game.obstacle;
 
-        const score = this.game.score
+        console.log('this.game.obstacle.y' + this.game.obstacle.y);
+        console.log('this.y' + this.y);
 
-    }
-
-    detectCollision () {
-        if (this.game.obstacle.x === this.x && this.game.obstacle.y === this.y) {
+        if (this.game.obstacle.y === (this.y - this.game.obstacle.width)) {
+            console.log('colided');
         this.score++;
-        // // this.speed += 1;
-        // fruit.placeRandomly();
-        // // Play sound of eating fruit
-        // eatingNoise.play();
         } 
-        // else {
-        // this.blocks.shift();
+        else {console.log("didnt colide")};
+
         console.log('the score is ' + this.score)
     }
 

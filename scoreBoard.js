@@ -4,6 +4,7 @@ class Scoreboard {
     }
   
     draw () {
+      console.log('the score board is being drawd')
       const context = this.game.context;
       const score = this.game.score;
   
