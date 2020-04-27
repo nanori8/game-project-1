@@ -3,6 +3,8 @@ class Game {
         this.$canvas = $canvas;
         this.context = this.$canvas.getContext('2d');
 
+        const basePixel = $canvas.width/10;
+
         this.setKeyBindings();
         
         this.reset();
@@ -14,8 +16,12 @@ class Game {
         this.character.y = 450;
         // this.obstacle = new Obstacle (this);
         this.background = new Background(this);
+
+        this.obstacle = new Obstacle(this);
+
         this.score = 0; 
         this.speed = 1;
+
         this.drawGame();
     }
     
