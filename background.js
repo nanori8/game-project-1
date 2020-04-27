@@ -5,7 +5,6 @@ class Background {
     
     
     draw () {
-        // console.log('draw backround called')
         const context = this.game.context;
         const backgroundimage = new Image();
 
@@ -17,13 +16,3 @@ class Background {
         context.drawImage(backgroundimage, 0, 0)
     }
 }
-
-
-
-// runLogic () {
-    
-// }
-
-// detectCollision() {
-    
-    // }

@@ -8,23 +8,32 @@ class Character {
         this.x = x;
         this.y = y;
 
-        this.width = 70;
-        this.height = 50
+        this.width = width;
+        this.height = height;
 
         this.characterimage = new Image();
+
+        const obstacle = this.game.obstacle;
+
+        const score = this.game.score
+
     }
 
-    // runLogic () {
-
-    // }
-
-    // detectCollision() {
-
-    // }
-
+    detectCollision () {
+        if (this.game.obstacle.x === this.x && this.game.obstacle.y === this.y) {
+        this.score++;
+        // // this.speed += 1;
+        // fruit.placeRandomly();
+        // // Play sound of eating fruit
+        // eatingNoise.play();
+        } 
+        // else {
+        // this.blocks.shift();
+        console.log('the score is ' + this.score)
+    }
 
     draw () {
-        console.log('draw character called')
+        // console.log('draw character called')
 
         this.characterimage.src = 'images/trampolim.png';
 
