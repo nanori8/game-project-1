@@ -5,8 +5,12 @@ class Game {
         
         this.basePixel = $canvas.width/25;
 
-        this.scoreBoard = new Scoreboard(this);
-        // this.score = this.character.score;
+        this.pillsTimer = 0
+        this.pillsRate = 1500 //one new obstacle every 1.5 seconds
+
+        this.doctorsTimer  = 0
+        this.doctorsRate = 2000 //one new obstacle every 1.5 seconds
+
 
         this.setKeyBindings();
         
@@ -33,16 +37,14 @@ class Game {
     }
 
     
-    loop () {
-        this.requestAnimationFrame         
+    loop (timestamp) {       
+        this.arrayObstacles(timestamp)
         this.runLogic();
         this.drawGame();
-        console.log('loop is running')
+        //console.log('loop is running')
 
         if (this.running) {
-            setTimeout(() => {
-              this.loop();
-            }, 1000 / 60);
+           window.requestAnimationFrame(timestamp => this.loop(timestamp))
         }
       }
       
@@ -52,14 +54,38 @@ class Game {
     
     
     runLogic () {
-        this.obstacle.runLogic();
+        for(let obstacle of this.obstacles){
+            obstacle.runLogic();
+        }
         this.character.detectCollision();
     }
     
-    
+    arrayObstacles (timestamp) {
+        //pills will be generating every 1.5 sconds
+        if(this.pillsTimer < timestamp - this.pillsRate){
+            this.pillsTimer = timestamp
+            const obstacle = new Obstacle(this, Math.random()*600, 0, 20, 20, 2, 'images/pill-red.png');
+            this.obstacles.push(obstacle);
+        }
+
+        //doctors will be generating every 2 seconds
+        if(this.doctorsTimer === 0 || !this.doctorsTimer){
+            console.log('doctorsTime', this.doctorsTimer)
+            this.doctorsTimer = timestamp
+            console.log('doctorsTime', this.doctorsTimer)
+        }else if(this.doctorsTimer < timestamp - this.doctorsRate){
+            this.doctorsTimer = timestamp
+            const obstacle = new Obstacle(this, Math.random()*600, 0, 20, 20, 4, 'images/doctor.png');
+            this.obstacles.push(obstacle);
+        }
+        //console.log(this.obstacles)
+    }   
+
+
     obstacleDraw () {
-        console.log('obstacle draw is being called')
-        setInterval(this.obstacle.draw(), 3000);
+       for(let obstacle of this.obstacles){
+           obstacle.draw()
+       }
       }
 
     
@@ -67,8 +93,8 @@ class Game {
         this.clearCanvas();
         this.background.draw();
         this.character.draw();
+        this.obstacleDraw()
         this.scoreboard.draw();
-        this.obstacleDraw ()
     }
     
     start () {
@@ -81,11 +107,12 @@ class Game {
     }
     
     reset () {
-        this.character = new Character (this, 300, 450, 70, 50);
+        this.character = new Character (this, 300, 350, 200, 100);
             
         this.background = new Background(this);
       
-        this.obstacle = new Obstacle(this, 10, 10, 20, 20, 10);
+        //this.obstacle = new Obstacle(this, 10, 10, 20, 20, 10);
+        this.obstacles=[]
                 
         this.scoreboard = new Scoreboard(this);
         

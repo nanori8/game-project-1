@@ -18,24 +18,21 @@ class Character {
     }
     
     detectCollision () {
-        const obstacle = this.game.obstacle;
+        for (let obstacle of this.game.obstacles){
+            if (obstacle.y === (this.y - obstacle.width) &&  obstacle.x === this.y - obstacle.height ) {
+                //console.log('colided');
+                this.game.score++;
+            } 
+            else {}//console.log("didnt colide")};
+        }
 
-        console.log('this.game.obstacle.y' + this.game.obstacle.y);
-        console.log('this.y' + this.y);
-
-        if (this.game.obstacle.y === (this.y - this.game.obstacle.width)) {
-            console.log('colided');
-        this.score++;
-        } 
-        else {console.log("didnt colide")};
-
-        console.log('the score is ' + this.score)
+        //console.log('the score is ' + this.score)
     }
 
     draw () {
         // console.log('draw character called')
 
-        this.characterimage.src = 'images/trampolim.png';
+        this.characterimage.src = 'images/fireman-trampoline-blue.png';
 
         this.characterimage.addEventListener('load', () =>{
             this.game.context.drawImage(this.characterimage, this.x, this.y, this.width, this.height)
