@@ -55,7 +55,7 @@ class Character {
 
     moveRight () {
         if (this.x <= ($canvas.width - this.basePixel - this.width)){
-            // console.log('TRUE x é ' + this.x + 'e x menor que ' + ($canvas.width - this.basePixel - this.width))
+            // console.log('TRUE x  ' + this.x + ' is less than ' + ($canvas.width - this.basePixel - this.width))
             this.x = this.x + this.basePixel;
         } else {this.x = $canvas.width - this.width;
         }

@@ -6,6 +6,7 @@ class Game {
         this.basePixel = $canvas.width/25;
 
         this.scoreBoard = new Scoreboard(this);
+        // this.score = this.character.score;
 
         this.setKeyBindings();
         
@@ -33,14 +34,15 @@ class Game {
 
     
     loop () {
+        this.requestAnimationFrame         
         this.runLogic();
         this.drawGame();
         console.log('loop is running')
-        
+
         if (this.running) {
             setTimeout(() => {
               this.loop();
-            }, 1000 / 30);
+            }, 1000 / 60);
         }
       }
       
@@ -55,12 +57,18 @@ class Game {
     }
     
     
+    obstacleDraw () {
+        console.log('obstacle draw is being called')
+        setInterval(this.obstacle.draw(), 3000);
+      }
+
+    
     drawGame () {
         this.clearCanvas();
         this.background.draw();
         this.character.draw();
-        this.obstacle.draw();
         this.scoreboard.draw();
+        this.obstacleDraw ()
     }
     
     start () {

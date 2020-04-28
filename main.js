@@ -8,6 +8,9 @@ const $buttonStart = document.getElementById('start');
 const $buttonPause = document.getElementById('pause');
 const $buttonReset = document.getElementById('reset');
 
+window.requestAnimationFrame   
+
+
 $buttonStart.addEventListener('click', () => {
   game.start();
 });

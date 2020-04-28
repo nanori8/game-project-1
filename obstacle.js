@@ -18,7 +18,8 @@ class Obstacle {
 
     runLogic () {
         this.y = this.y + this.speed;
-        this.x = this.x + this.speed;
+        this.x = this.x + Math.sin(this.speed);
+        // this.x = this.x + this.speed;
     }
 
 
