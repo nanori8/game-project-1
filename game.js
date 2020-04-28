@@ -9,7 +9,7 @@ class Game {
         this.pillsRate = 1500 //one new obstacle every 1.5 seconds
 
         this.doctorsTimer  = 0
-        this.doctorsRate = 2000 //one new obstacle every 1.5 seconds
+        this.doctorsRate = 7000 //one new obstacle every 2 seconds
 
 
         this.setKeyBindings();
@@ -64,18 +64,20 @@ class Game {
         //pills will be generating every 1.5 sconds
         if(this.pillsTimer < timestamp - this.pillsRate){
             this.pillsTimer = timestamp
-            const obstacle = new Obstacle(this, Math.random()*600, 0, 20, 20, 2, 'images/pill-red.png');
+            const obstacle = new Obstacle(this, 110, 70, 20, 20, 2, 'images/pill-red.png');
+            // const obstacle = new Obstacle(this, Math.random()*600, 0, 20, 20, 2, 'images/pill-red.png');
             this.obstacles.push(obstacle);
         }
 
         //doctors will be generating every 2 seconds
         if(this.doctorsTimer === 0 || !this.doctorsTimer){
-            console.log('doctorsTime', this.doctorsTimer)
+            // console.log('doctorsTime', this.doctorsTimer)
             this.doctorsTimer = timestamp
-            console.log('doctorsTime', this.doctorsTimer)
+            // console.log('doctorsTime', this.doctorsTimer)
         }else if(this.doctorsTimer < timestamp - this.doctorsRate){
             this.doctorsTimer = timestamp
-            const obstacle = new Obstacle(this, Math.random()*600, 0, 20, 20, 4, 'images/doctor.png');
+            const obstacle = new Obstacle(this, 10, 0, 20, 20, 4, 'images/doctor.png');
+            // const obstacle = new Obstacle(this, Math.random()*600, 0, 20, 20, 4, 'images/doctor.png');
             this.obstacles.push(obstacle);
         }
         //console.log(this.obstacles)
@@ -107,11 +109,10 @@ class Game {
     }
     
     reset () {
-        this.character = new Character (this, 300, 350, 200, 100);
+        this.character = new Character (this, 300, 360, 100, 50);
             
         this.background = new Background(this);
       
-        //this.obstacle = new Obstacle(this, 10, 10, 20, 20, 10);
         this.obstacles=[]
                 
         this.scoreboard = new Scoreboard(this);

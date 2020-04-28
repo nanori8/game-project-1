@@ -19,8 +19,14 @@ class Obstacle {
 
     runLogic () {
         this.y = this.y + this.speed;
-        //this.x = this.x + Math.sin(this.speed);
-        //this.x = this.x + this.speed;
+        // this.x = this.x + Math.sin(this.speed);
+        // tempo = 0;
+        // x + velocidade * tempo + 0,1 
+        // y + velocidade * tempo**2 + 0,1 
+
+        // velocidade pode ser gravidade
+        //gravidade aleatoria 
+        this.x = this.x + this.speed;
     }
 
 

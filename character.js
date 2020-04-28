@@ -19,11 +19,13 @@ class Character {
     
     detectCollision () {
         for (let obstacle of this.game.obstacles){
+            console.log('obstacle.y' + obstacle.y)
+            console.log('obstacle.x' + obstacle.x)
             if (obstacle.y === (this.y - obstacle.width) &&  obstacle.x === this.y - obstacle.height ) {
-                //console.log('colided');
+                console.log('colided');
                 this.game.score++;
             } 
-            else {}//console.log("didnt colide")};
+            else {console.log("didnt colide")};
         }
 
         //console.log('the score is ' + this.score)

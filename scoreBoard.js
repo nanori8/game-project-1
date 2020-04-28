@@ -9,7 +9,7 @@ class Scoreboard {
       const context = this.game.context;
       const score = this.game.score;
   
-      console.log('the score in scoreboard is '+ score);
+      // console.log('the score in scoreboard is '+ score);
   
       context.font = '24px sans-serif';
   
