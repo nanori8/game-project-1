@@ -3,20 +3,20 @@ class Game {
         this.$canvas = $canvas;
         this.context = this.$canvas.getContext('2d');
         
-        this.basePixel = $canvas.width/25;
+        this.basePixel = 15;
 
         this.medicalKitTimer = 0
-        this.medicalKitRate = 4000000 //one new obstacle every 4 seconds
+        this.medicalKitRate = 4000 //one new obstacle every 4 seconds
 
         this.glovesTimer  = 0
         this.glovesRate = 2000 //one new obstacle every 2 seconds
 
         
         this.inhalerTimer  = 0
-        this.inhalerRate = 30000000 //one new inhaler every 3 seconds
+        this.inhalerRate = 3000 //one new inhaler every 3 seconds
 
         this.virusTimer  = 0
-        this.virusRate = 1000 //one new inhaler every 3 seconds
+        this.virusRate = 5000 //one new inhaler every 5 seconds
 
 
         this.setKeyBindings();
@@ -108,7 +108,7 @@ class Game {
             // console.log('glovesTime', this.glovesTimer)
         }else if(this.glovesTimer < timestamp - this.glovesRate){
             this.glovesTimer = timestamp
-            const obstacle = new Obstacle(this, 110, 70, 20, 20, 3, 'images/gloves.png', 'gloves');
+            const obstacle = new Obstacle(this, 110, 70, 20, 20, 2, 'images/gloves.png', 'gloves');
             this.obstacles.push(obstacle);
         }
 
@@ -147,6 +147,15 @@ class Game {
     pause () {
         this.running = false;
     }
+
+    gameOver () {
+        this.running = false;
+        const context = this.context;
+        const score = this.score;
+        if(score <= 0) {}
+        alert("GAME OVER");
+    }
+
     
     reset () {
         this.character = new Character (this, 300, 360, 100, 50);
