@@ -16,7 +16,7 @@ class Game {
         this.inhalerRate = 3000 //one new inhaler every 3 seconds
 
         this.virusTimer  = 0
-        this.virusRate = 5000 //one new inhaler every 5 seconds
+        this.virusRate = 4000 //one new inhaler every 5 seconds
 
         this.setKeyBindings();
         
@@ -51,10 +51,10 @@ class Game {
 
         if (this.running) {
            window.requestAnimationFrame(timestamp => this.loop(timestamp))
+
         }
-        // this.obstacle.speed = this.obstacle.speed + 0,5 
     }
-      
+    
     clearCanvas () {
         this.context.clearRect(0, 0, this.$canvas.width, this.$canvas.height);
     }
@@ -64,13 +64,18 @@ class Game {
         for(let i = 0; i< this.obstacles.length;i++){
             const obstacle = this.obstacles[i]
             const obstacleType = obstacle.imageName
-            //run the logic for the obstacles
+            // const obstacleSpeed= obstacle.speed
 
+            //run the logic for the obstacles
+            
             // obstacle.runLogic()
             if(obstacle.imageName === 'virus')
-            {obstacle.runLogicVirus();
+            {
+                obstacle.runLogicVirus()
+                obstacle.speed = obstacle.speed + 5
+                ;
             } else {obstacle.runLogic()};
-
+            
             //run the collision detection
             if(obstacle.detectCollision()){
                 //collision detected!
@@ -81,7 +86,7 @@ class Game {
                 this.scoreboard.updateScore(obstacleType)
             }
         }
-    
+        
     }
     
     arrayObstacles (timestamp) {
@@ -95,7 +100,7 @@ class Game {
         //medicalKit will be generating every 1.5 sconds
         if(this.medicalKitTimer < timestamp - this.medicalKitRate){
             this.medicalKitTimer = timestamp
-            const obstacle = new Obstacle(this, 80, 190, 20, 20, 1, 'images/kit.png', 'kit');
+            const obstacle = new Obstacle(this, 80, 190, 20, 20, 1.6, 'images/kit.png', 'kit');
             this.obstacles.push(obstacle);
         }
 
@@ -106,13 +111,13 @@ class Game {
             // console.log('glovesTime', this.glovesTimer)
         }else if(this.glovesTimer < timestamp - this.glovesRate){
             this.glovesTimer = timestamp
-            const obstacle = new Obstacle(this, 80, 190, 20, 20, 1.5, 'images/gloves.png', 'gloves');
+            const obstacle = new Obstacle(this, 60, 190, 20, 20, 1, 'images/gloves.png', 'gloves');
             this.obstacles.push(obstacle);
         }
 
         if(this.inhalerTimer < timestamp - this.inhalerRate){
             this.inhalerTimer = timestamp
-            const obstacle = new Obstacle(this, 80, 190, 20, 20, 2, 'images/inhaler.png', 'inhaler');
+            const obstacle = new Obstacle(this, 80, 190, 20, 20, 1.3, 'images/inhaler.png', 'inhaler');
             // const obstacle = new Obstacle(this, Math.random()*600, 0, 20, 20, 2, 'images/pill-red.png');
             this.obstacles.push(obstacle);
         }

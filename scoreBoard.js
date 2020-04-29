@@ -27,7 +27,18 @@ class Scoreboard {
     draw () {
       const context = this.game.context;
       const score = this.game.score;
-      context.font = '24px sans-serif';
+
+      context.save();
+      context.globalAlpha = 0.1;
+      context.fillstyle = 'red';
+      context.fillRect(520, 12, 130, 40);
+      context.restore();
+      
+      context.save();
+      context.fillstyle = 'darkgrey';
+      context.font = '20px sans-serif';
+      context.textAlign = "center";
       context.fillText(`${score} Points`, $canvas.width - 120, 40);
+      context.restore();
     }
   }

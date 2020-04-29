@@ -12,7 +12,7 @@ class Character {
         this.height = height;
         
         this.score = 0;
-
+        
         this.characterimage = new Image();  
         
     }
@@ -53,7 +53,7 @@ class Character {
             this.x = this.x + this.basePixel;
         } else {this.x = $canvas.width - this.width;
         }
-        if(this.x > 340) {
+        if(this.x > 350) {
             this.game.gameOver();
         }
     }     
