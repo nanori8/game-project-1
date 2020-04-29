@@ -1,5 +1,5 @@
 class Obstacle {
-    constructor (game, x, y, width, height, speed, image) {
+    constructor (game, x, y, width, height, speed, image, imageName) {
         this.game = game;
         this.width = this.game.$canvas.width
         this.basePixel = this.game.basePixel;
@@ -15,6 +15,8 @@ class Obstacle {
 
         this.obstacleImage = new Image();
         this.obstacleImage.src = image
+
+        this.imageName = imageName;
     }
 
     runLogic () {
@@ -28,7 +30,10 @@ class Obstacle {
         //gravidade 
         this.x = this.x + this.speed;
     }
-
+    
+    runLogicVirus () {
+        this.y = this.y + this.speed;
+    }
 
     draw () {
         // console.log('draw obstacle called')
