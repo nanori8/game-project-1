@@ -25,7 +25,7 @@ class Obstacle {
         // y + velocidade * tempo**2 + 0,1 
 
         // velocidade pode ser gravidade
-        //gravidade aleatoria 
+        //gravidade 
         this.x = this.x + this.speed;
     }
 

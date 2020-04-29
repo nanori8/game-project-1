@@ -26,15 +26,36 @@ class Character {
             if ((obstacle.y + obstacle.height) >= (this.y)
                 && obstacle.x + obstacle.width > this.x
                 && obstacle.x < (this.x + this.width)
-                ) {
-                console.log('colided');
-                this.game.score++;
-            } 
-            else {console.log("didnt colide")};
+                ) 
+                {return 'colided'}
+        }
+    }
+
+    updateScore () {
+        console.log('updatescore called')
+        for (let obstacle of this.game.obstacles){
+            console.log('obstacle.image ' + obstacle.image)
+            let indexOfObstacle = 0;
+            switch (obstacle.image) {
+                case 'images/kit.png':
+                    this.game.score = this.game.score + 60;
+                    indexOfObstacle = this.game.obstacles.indexOf(obstacle)
+                    this.game.obstacles.splice(0, indexOfObstacle)
+                    break;
+                case 'images/inhaler.png':
+                    this.game.score = this.game.score + 20;
+                    indexOfObstacle = this.game.obstacles.indexOf(obstacle)
+                    this.game.obstacles.splice(0, indexOfObstacle)
+                    break;
+                case 'images/gloves.png':
+                    this.game.score = this.game.score + 5;
+                    indexOfObstacle = this.game.obstacles.indexOf(obstacle)
+                    this.game.obstacles.splice(0, indexOfObstacle)
+                    break;
+                    }
+            }
         }
 
-        //console.log('the score is ' + this.score)
-    }
 
     draw () {
         // console.log('draw character called')
