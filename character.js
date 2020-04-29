@@ -24,7 +24,7 @@ class Character {
     draw () {
         // console.log('draw character called')
 
-        this.characterimage.src = 'images/fireman-trampoline-blue.png';
+        this.characterimage.src = 'images/red_trampoline.png';
 
         this.characterimage.addEventListener('load', () =>{
             this.game.context.drawImage(this.characterimage, this.x, this.y, this.width, this.height)
@@ -40,9 +40,10 @@ class Character {
             this.x = this.x - this.basePixel;
         } else {this.x = 0
         }
-        if(this.x < 200) {
-        this.x = 200};
-        }
+        if(this.x < 130) {
+        this.x = 130};
+        
+    }
 
 
     moveRight () {
@@ -52,7 +53,7 @@ class Character {
             this.x = this.x + this.basePixel;
         } else {this.x = $canvas.width - this.width;
         }
-        if(this.x > 420) {
+        if(this.x > 340) {
             this.game.gameOver();
         }
     }     

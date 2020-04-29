@@ -95,7 +95,7 @@ class Game {
         //medicalKit will be generating every 1.5 sconds
         if(this.medicalKitTimer < timestamp - this.medicalKitRate){
             this.medicalKitTimer = timestamp
-            const obstacle = new Obstacle(this, 110, 70, 20, 20, 1, 'images/kit.png', 'kit');
+            const obstacle = new Obstacle(this, 80, 190, 20, 20, 1, 'images/kit.png', 'kit');
             this.obstacles.push(obstacle);
         }
 
@@ -106,13 +106,13 @@ class Game {
             // console.log('glovesTime', this.glovesTimer)
         }else if(this.glovesTimer < timestamp - this.glovesRate){
             this.glovesTimer = timestamp
-            const obstacle = new Obstacle(this, 110, 70, 20, 20, 1, 'images/gloves.png', 'gloves');
+            const obstacle = new Obstacle(this, 80, 190, 20, 20, 1.5, 'images/gloves.png', 'gloves');
             this.obstacles.push(obstacle);
         }
 
         if(this.inhalerTimer < timestamp - this.inhalerRate){
             this.inhalerTimer = timestamp
-            const obstacle = new Obstacle(this, 110, 70, 20, 20, 1, 'images/inhaler.png', 'inhaler');
+            const obstacle = new Obstacle(this, 80, 190, 20, 20, 2, 'images/inhaler.png', 'inhaler');
             // const obstacle = new Obstacle(this, Math.random()*600, 0, 20, 20, 2, 'images/pill-red.png');
             this.obstacles.push(obstacle);
         }
@@ -157,7 +157,7 @@ class Game {
         
 
     reset () {
-        this.character = new Character (this, 300, 360, 100, 50);
+        this.character = new Character (this, 300, 400, 75, 30);
             
         this.background = new Background(this);
       

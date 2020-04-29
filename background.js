@@ -8,7 +8,7 @@ class Background {
         const context = this.game.context;
         const backgroundimage = new Image();
 
-        backgroundimage.src = 'images/Mockup-airplane-Hospital.png';
+        backgroundimage.src = 'images/background_LF.png';
         backgroundimage.addEventListener('load', () =>{
             context.drawImage(backgroundimage, 0, 0)
         }
