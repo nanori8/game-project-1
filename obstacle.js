@@ -17,6 +17,8 @@ class Obstacle {
         this.obstacleImage.src = image
 
         this.imageName = imageName;
+
+        this.gravity = 10 
     }
 
     detectCollision () {
@@ -30,7 +32,7 @@ class Obstacle {
     }
 
     runLogic () {
-        this.y = this.y + this.speed;
+        this.y = this.y + Math.sin(this.speed);
         // this.x = this.x + Math.sin(this.speed);
         // tempo = 0;
         // x + velocidade * tempo + 0,1 
@@ -38,11 +40,12 @@ class Obstacle {
 
         // velocidade pode ser gravidade
         //gravidade 
+
         this.x = this.x + this.speed;
     }
     
     runLogicVirus () {
-        this.y = this.y + this.speed;
+        this.y++
     }
 
     draw () {

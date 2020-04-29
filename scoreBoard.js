@@ -8,7 +8,7 @@ class Scoreboard {
     updateScore (obstacleType) {
       switch (obstacleType) {
         case 'virus':
-          this.game.score = this.game.score -50;
+          this.game.score = this.game.score -40;
           this.game.gameOver();
           break;
         case 'kit':
