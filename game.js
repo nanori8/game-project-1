@@ -61,14 +61,29 @@ class Game {
     
     
     runLogic () {
-        for(let obstacle of this.obstacles){
-            console.log('obstacle.imageName ' + obstacle.imageName)
-            if(obstacle.image === 'virus')
+        for(let i = 0; i< this.obstacles.length;i++){
+            const obstacle = this.obstacles[i]
+            const obstacleType = obstacle.imageName
+            //run the logic for the obstacles
+
+            // obstacle.runLogic()
+            if(obstacle.imageName === 'virus')
             {obstacle.runLogicVirus();
             } else {obstacle.runLogic()};
+
+            //run the collision detection
+            if(obstacle.detectCollision()){
+                //collision detected!
+                //remove the obstacle from the array
+                this.obstacles.splice(i, 1) // Delete object
+                i++
+                //update the score
+                this.scoreboard.updateScore(obstacleType)
+            }
         }
-        this.character.detectCollision();
-        this.character.updateScore();
+        
+       // this.character.detectCollision();
+       // this.character.updateScore();
     }
     
     arrayObstacles (timestamp) {
@@ -83,7 +98,6 @@ class Game {
         if(this.medicalKitTimer < timestamp - this.medicalKitRate){
             this.medicalKitTimer = timestamp
             const obstacle = new Obstacle(this, 110, 70, 20, 20, 1, 'images/kit.png', 'kit');
-            // const obstacle = new Obstacle(this, Math.random()*600, 0, 20, 20, 2, 'images/pill-red.png');
             this.obstacles.push(obstacle);
         }
 
@@ -95,7 +109,6 @@ class Game {
         }else if(this.glovesTimer < timestamp - this.glovesRate){
             this.glovesTimer = timestamp
             const obstacle = new Obstacle(this, 110, 70, 20, 20, 3, 'images/gloves.png', 'gloves');
-            // const obstacle = new Obstacle(this, Math.random()*600, 0, 20, 20, 4, 'images/doctor.png');
             this.obstacles.push(obstacle);
         }
 

@@ -17,54 +17,8 @@ class Character {
         
     }
     
-    detectCollision () {
-        let collision = false; 
-        for (let obstacle of this.game.obstacles){
-            // console.log('obstacle.y' + obstacle.y + ' this y ' + this.y )
-            // console.log('obstacle.x' + obstacle.x + ' this x ' + this.x )
-            // console.log('this height' + this.height)
-            // console.log('this width' + this.width)
-            if ((obstacle.y + obstacle.height) >= (this.y)
-                && obstacle.x + obstacle.width > this.x
-                && obstacle.x < (this.x + this.width)
-                ) 
-                {return collision = true}
-                
-        }
-    }
 
-    updateScore () {
-        console.log('updatescore called')
-        for (let obstacle of this.game.obstacles){
-            console.log('obstacle.imageName ' + obstacle.imageName)
-            let indexOfObstacle = 0;
-            if(this.detectCollision()){
-            switch (obstacle.imageName) {
-                case 'virus':
-                    this.game.score = this.game.score -50;
-                    indexOfObstacle = this.game.obstacles.indexOf(obstacle) // Position in arraw of the element to be deleted
-                    this.game.obstacles.splice(0, indexOfObstacle) // Delete object
-                    break;
-                case 'kit':
-                    this.game.score = this.game.score + 60; //updates sco res
-                    indexOfObstacle = this.game.obstacles.indexOf(obstacle) // Position in arraw of the element to be deleted
-                    this.game.obstacles.splice(0, indexOfObstacle) // Delete object
-                    break;
-                case 'inhaler':
-                    this.game.score = this.game.score + 20;
-                    indexOfObstacle = this.game.obstacles.indexOf(obstacle) // Position in arraw of the element to be deleted
-                    this.game.obstacles.splice(0, indexOfObstacle) // Delete object
-                    break;
-                case 'gloves':
-                    this.game.score = this.game.score + 5;
-                    indexOfObstacle = this.game.obstacles.indexOf(obstacle) // Position in arraw of the element to be deleted
-                    this.game.obstacles.splice(0, indexOfObstacle) // Delete object
-                    break;
 
-                    }
-            }
-        }
-    }
 
 
     draw () {

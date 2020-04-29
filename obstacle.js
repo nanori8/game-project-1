@@ -19,6 +19,16 @@ class Obstacle {
         this.imageName = imageName;
     }
 
+    detectCollision () {
+            if ((this.y + this.height) >= (this.game.character.y)
+                && this.x + this.width > this.game.character.x
+                && this.x < (this.game.character.x + this.game.character.width)
+                ) {
+                    console.log('collision true')
+                    return true
+                }
+    }
+
     runLogic () {
         this.y = this.y + this.speed;
         // this.x = this.x + Math.sin(this.speed);
