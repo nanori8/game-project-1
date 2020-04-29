@@ -1,5 +1,5 @@
 class Obstacle {
-    constructor (game, x, y, width, height, speed,image) {
+    constructor (game, x, y, width, height, speed, image) {
         this.game = game;
         this.width = this.game.$canvas.width
         this.basePixel = this.game.basePixel;

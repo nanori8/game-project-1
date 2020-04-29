@@ -19,9 +19,14 @@ class Character {
     
     detectCollision () {
         for (let obstacle of this.game.obstacles){
-            console.log('obstacle.y' + obstacle.y)
-            console.log('obstacle.x' + obstacle.x)
-            if (obstacle.y === (this.y - obstacle.width) &&  obstacle.x === this.y - obstacle.height ) {
+            // console.log('obstacle.y' + obstacle.y + ' this y ' + this.y )
+            // console.log('obstacle.x' + obstacle.x + ' this x ' + this.x )
+            // console.log('this height' + this.height)
+            // console.log('this width' + this.width)
+            if ((obstacle.y + obstacle.height) >= (this.y)
+                && obstacle.x + obstacle.width > this.x
+                && obstacle.x < (this.x + this.width)
+                ) {
                 console.log('colided');
                 this.game.score++;
             } 
