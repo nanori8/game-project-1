@@ -4,9 +4,12 @@ const context = $canvas.getContext('2d');
 const game = new Game($canvas);
 
 
+
 const $buttonStart = document.getElementById('start');
 const $buttonPause = document.getElementById('pause');
 const $buttonReset = document.getElementById('reset');
+const $buttonLeft = document.getElementById('left');
+const $buttonRight = document.getElementById('right');
 
 $buttonStart.addEventListener('click', () => {
   game.start();
@@ -18,4 +21,14 @@ $buttonPause.addEventListener('click', () => {
 
 $buttonReset.addEventListener('click', () => {
   game.reset();
+});
+
+$buttonLeft.addEventListener('click', () => {
+  console.log('button pressed')
+  game.character.moveLeft();
+});
+
+$buttonRight.addEventListener('click', () => {
+  console.log('button pressed')
+  game.character.moveRight();
 });
