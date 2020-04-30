@@ -15,4 +15,13 @@ class Background {
         )
         context.drawImage(backgroundimage, 0, 0)
     }
+
+    drawInstructions () {
+        const instructionsimage = new Image();
+        instructionsimage.src = 'images/instructions.png';
+        instructionsimage.addEventListener('load', () =>{
+            context.drawImage(instructionsimage, 0, 0)
+        })
+        context.drawImage(instructionsimage, 0, 0)
+    }
 }

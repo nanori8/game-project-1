@@ -15,7 +15,7 @@ class Game {
         this.inhalerRate = 3000 //one new inhaler every 3 seconds
 
         this.virusTimer  = 0
-        this.virusRate = 400000 //one new inhaler every 5 seconds
+        this.virusRate = 4000 //one new inhaler every 5 seconds
 
         this.setKeyBindings();
         
@@ -72,9 +72,6 @@ class Game {
             const obstacle = this.obstacles[i]
             const obstacleType = obstacle.imageName
 
-            this.x = this.inicialX;
-            this.y =  this.inicialY;
-
             // const obstacleSpeed= obstacle.speed
 
             //run the logic for the obstacles
@@ -83,7 +80,7 @@ class Game {
             if(obstacle.imageName === 'virus')
             {
                 obstacle.runLogicVirus()
-                obstacle.speed = obstacle.speed + 0,1;
+                obstacle.speed = obstacle.speed + 1;
                 ;
             } else {obstacle.runLogic()};
             
@@ -91,8 +88,20 @@ class Game {
             if(obstacle.detectCollision()){
                 //collision detected!
                 //remove the obstacle from the array
-                this.obstacles.splice(i, 1) // Delete object
-                i++
+
+                if(obstacle.imageName === 'virus'){
+                    this.obstacles.splice(i, 1) // Delete object
+                    i++
+                }else{
+                    const hospitalX = 600
+                    const hospitalY = 190
+                    obstacle.toHospital = true
+                    const a  = (-hospitalY + obstacle.y) / (-hospitalX + obstacle.x)
+                    obstacle.toHospitalEquationA = a
+                    obstacle.toHospitalEquationB = obstacle.y - a * obstacle.x
+                    console.log("A",a)
+                    console.log("B",obstacle.y - a * obstacle.x)
+                }
                 //update the score
                 this.scoreboard.updateScore(obstacleType)
             }
@@ -129,7 +138,7 @@ class Game {
         if(this.inhalerTimer < timestamp - this.inhalerRate){
             this.inhalerTimer = timestamp
             const obstacle = new Obstacle(this, this.inicialX, this.inicialY, 20, 20, this.speed, 'images/inhaler.png', 'inhaler');
-            // const obstacle = new Obstacle(this, Math.random()*600, 0, 20, 20, 2, 'images/pill-red.png');
+            //const obstacle = new Obstacle(this, Math.random()*600, 0, 20, 20, 2, 'images/pill-red.png');
             this.obstacles.push(obstacle);
         }
 
@@ -143,10 +152,10 @@ class Game {
            obstacle.draw()
        }
       }
-
     
     drawGame () {
         this.clearCanvas();
+        this.drawInstructions
         this.background.draw();
         this.character.draw();
         this.obstacleDraw()
@@ -154,18 +163,7 @@ class Game {
     }
     
     start () {
-        const instructionsimage = new Image();
-
-        instructionsimage.src = 'images/instructions.png';
-        
-        instructionsimage.addEventListener('load', () =>{
-            context.drawImage(instructionsimage, 0, 0)
-        })
-
-        context.drawImage(instructionsimage, 0, 0)
-
         this.running = true;
-
         this.loop();
     }
 
