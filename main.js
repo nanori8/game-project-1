@@ -25,11 +25,9 @@ $buttonReset.addEventListener('click', () => {
 });
 
 $buttonLeft.addEventListener('click', () => {
-  console.log('button pressed')
   game.character.moveLeft();
 });
 
 $buttonRight.addEventListener('click', () => {
-  console.log('button pressed')
   game.character.moveRight();
 });

@@ -9,13 +9,13 @@ class Game {
         this.medicalKitRate = 4000 //one new obstacle every 4 seconds
 
         this.glovesTimer  = 0
-        this.glovesRate = 2000 //one new obstacle every 2 seconds
+        this.glovesRate = 20000000 //one new obstacle every 2 seconds
         
         this.inhalerTimer  = 0
-        this.inhalerRate = 3000 //one new inhaler every 3 seconds
+        this.inhalerRate = 3000000 //one new inhaler every 3 seconds
 
         this.virusTimer  = 0
-        this.virusRate = 4000 //one new inhaler every 5 seconds
+        this.virusRate = 4000000 //one new inhaler every 5 seconds
 
         this.setKeyBindings();
         
@@ -52,13 +52,9 @@ class Game {
         this.arrayObstacles(timestamp)
         this.runLogic();
         this.drawGame();
-        //console.log('loop is running')
-
         
         if (this.running) {
             window.requestAnimationFrame(timestamp => this.loop(timestamp))
-            console.log('time is increasing')    
-
         }
     }
     
@@ -72,11 +68,15 @@ class Game {
             const obstacle = this.obstacles[i]
             const obstacleType = obstacle.imageName
 
-            // const obstacleSpeed= obstacle.speed
+            // If objects falls on the ground, it desapears
+
+            if(obstacle.y >=400) {
+                this.obstacles.splice(i, 1) // Delete object
+                i++
+            }
 
             //run the logic for the obstacles
             
-            // obstacle.runLogic()
             if(obstacle.imageName === 'virus')
             {
                 obstacle.runLogicVirus()
@@ -92,6 +92,8 @@ class Game {
                 if(obstacle.imageName === 'virus'){
                     this.obstacles.splice(i, 1) // Delete object
                     i++
+                    this.scoreboard.updateScore(obstacleType)
+                // Move the item to the hospital
                 }else{
                     const hospitalX = 600
                     const hospitalY = 190
@@ -99,11 +101,8 @@ class Game {
                     const a  = (-hospitalY + obstacle.y) / (-hospitalX + obstacle.x)
                     obstacle.toHospitalEquationA = a
                     obstacle.toHospitalEquationB = obstacle.y - a * obstacle.x
-                    console.log("A",a)
-                    console.log("B",obstacle.y - a * obstacle.x)
                 }
                 //update the score
-                this.scoreboard.updateScore(obstacleType)
             }
         }
         this.time += 0.02;

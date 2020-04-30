@@ -5,9 +5,6 @@ class Obstacle {
         this.basePixel = this.game.basePixel;
         this.context = this.game.context;
 
-        //this.x = x;
-        //this.y = y;
-
         this.trampolineTime = 0
         this.hospitalTime = 1
 
@@ -19,7 +16,8 @@ class Obstacle {
         this.toHospitalEquationA = 0
         this.toHospitalEquationB = 0
 
-        
+        this.hospitalX = 500
+        this.hospitaly = 190
 
         this.obstacleImage = new Image();
         this.obstacleImage.src = image
@@ -27,8 +25,6 @@ class Obstacle {
         this.imageName = imageName;
 
         this.setInitialPositions(x, y, speed, imageName)
-
-
 
         this.gravity = 1.5;
     }
@@ -50,9 +46,27 @@ class Obstacle {
                 && this.x + this.width > this.game.character.x
                 && this.x < (this.game.character.x + this.game.character.width)
                 ) {
-                    console.log('collision true')
                     return true
                 }
+    }
+
+    detectHospitalEntry () {
+        console.log('this.hospitaly', this.hospitaly)
+        console.log('this.y', this.y)
+        console.log('this.height', this.height)
+
+        if ((this.y + this.height) <= (this.hospitaly)
+
+            // && this.x + this.width > this.game.character.x
+            // && this.x < (this.game.character.x + this.game.character.width)
+            ) {
+                console.log('collision true')
+                return true
+            }
+        }
+    
+    runLogicVirus () {
+        this.y++
     }
 
     runLogic () {
@@ -77,13 +91,11 @@ class Obstacle {
         const b = this.toHospitalEquationB
         this.x += this.hospitalTime
         this.y = a * this.x + b
-        console.log(this.x)
-        console.log(this.y)
+        console.log('x ',this.x)
+        console.log('t ',this.y)
+        this.detectHospitalEntry()
     }
     
-    runLogicVirus () {
-        this.y++
-    }
 
     draw () {
         // console.log('draw obstacle called')
