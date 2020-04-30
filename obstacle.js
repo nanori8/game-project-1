@@ -50,17 +50,17 @@ class Obstacle {
                 }
     }
 
-    // detectHospitalEntry () {
-    //     // console.log('this.hospitaly', this.hospitaly)
-    //     // console.log('this.y', this.y)
-    //     // console.log('this.height', this.height)
+    detectHospitalEntry () {
+        // console.log('this.hospitaly', this.hospitaly)
+        // console.log('this.y', this.y)
+        // console.log('this.height', this.height)
 
-    //     if ((this.y - this.height) < (this.hospitaly)
-    //         ) {
-    //             console.log('collision true')
-    //             return true
-    //         }
-    //     }
+        if (this.y - this.height < this.hospitaly
+        && this.x + this.width > this.hospitalX)
+         {console.log('collision true')
+                return true
+            }
+        }
     
     runLogicVirus () {
         this.y++

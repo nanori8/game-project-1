@@ -73,7 +73,7 @@ class Game {
             
             // delete items as they hit the ground
 
-            if(obstacle.y - obstacle.height > 420 ) {
+            if(obstacle.y - obstacle.height > 390 ) {
                 this.obstacles.splice(i, 1) // Delete object
                 i++
             } 
@@ -92,6 +92,7 @@ class Game {
                 //remove the obstacle from the array
 
                 if(obstacle.imageName === 'virus'){
+                    this.scoreboard.updateScore(obstacleType)
                     this.obstacles.splice(i, 1) // Delete object
                     i++
                 // Move the item to the hospital
@@ -102,11 +103,17 @@ class Game {
                     obstacle.toHospitalEquationB = obstacle.y - a * obstacle.x
                 }
                 //update the score
+            }
+
+            if(obstacle.detectHospitalEntry()){
+                this.obstacles.splice(i, 1) // Delete object
+                i++
                 this.scoreboard.updateScore(obstacleType)
             }
-        }
+
         this.time += 0.02;
     }
+}
     
     arrayObstacles (timestamp) {
         

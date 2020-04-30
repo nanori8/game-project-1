@@ -21,9 +21,9 @@ class Scoreboard {
         case 'virus':
           // console.log(this.game.score)
           this.game.score = this.game.score -40;
-          // if(this.game.score<0){
+          if(this.game.score<0){
           //   console.log('this game score called')
-          //   this.game.gameOver()};
+            this.game.gameOver()};
           break;
         }
   }
