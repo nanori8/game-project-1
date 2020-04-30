@@ -18,6 +18,8 @@ class Obstacle {
 
         this.imageName = imageName;
 
+        this.inicialX = 80;
+        this.inicialY = 190;
         this.gravity = 10 
     }
 
@@ -32,16 +34,31 @@ class Obstacle {
     }
 
     runLogic () {
-        this.y = this.y + Math.sin(this.speed);
-        // this.x = this.x + Math.sin(this.speed);
-        // tempo = 0;
-        // x + velocidade * tempo + 0,1 
-        // y + velocidade * tempo**2 + 0,1 
+
+        console.log("runLogic is running")
+
+        console.log("this.x "+ this.x)
+
+        console.log("this.inicialX " + this.inicialX)
+
+        // this.y = this.y + Math.sin(this.speed);
+
+        // x=80 y=190
+
+
+        console.log('X : ', this.inicialX, this.speed, this.game.time);
+        console.log('Y :', this.inicialY, this.gravity, this.game.time);
+        // this.x = this.inicialX + this.speed * this.game.time;
+        this.x = this.inicialX + this.speed * this.game.time;
+
+        
+        // this.y = this.inicialY - this.gravity * this.game.time **2 
+        this.y = this.inicialY - this.gravity * this.game.time **2;
 
         // velocidade pode ser gravidade
         //gravidade 
 
-        this.x = this.x + this.speed;
+        // this.x = this.x + this.speed;
     }
     
     runLogicVirus () {

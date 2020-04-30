@@ -10,7 +10,6 @@ class Game {
 
         this.glovesTimer  = 0
         this.glovesRate = 2000 //one new obstacle every 2 seconds
-
         
         this.inhalerTimer  = 0
         this.inhalerRate = 3000 //one new inhaler every 3 seconds
@@ -18,9 +17,13 @@ class Game {
         this.virusTimer  = 0
         this.virusRate = 4000 //one new inhaler every 5 seconds
 
+        this.time = 0
+
         this.setKeyBindings();
         
         this.reset();
+
+        this.speed = 1
     }
     
     
@@ -49,9 +52,11 @@ class Game {
         this.drawGame();
         //console.log('loop is running')
 
+        console.log('time is increasing')    
+        this.time += 0.1;
+
         if (this.running) {
            window.requestAnimationFrame(timestamp => this.loop(timestamp))
-
         }
     }
     
@@ -93,14 +98,14 @@ class Game {
         
         if(this.virusTimer < timestamp - this.virusRate){
             this.virusTimer = timestamp
-            const obstacle = new Obstacle(this, Math.random()*600, 10, 20, 20, 1/2,'images/virus.png', 'virus');
+            const obstacle = new Obstacle(this, Math.random()*600, 10, 20, 20, this.speed*1/2,'images/virus.png', 'virus');
             this.obstacles.push(obstacle);
         }
 
         //medicalKit will be generating every 1.5 sconds
         if(this.medicalKitTimer < timestamp - this.medicalKitRate){
             this.medicalKitTimer = timestamp
-            const obstacle = new Obstacle(this, 80, 190, 20, 20, 1.6, 'images/kit.png', 'kit');
+            const obstacle = new Obstacle(this, 80, 190, 20, 20, this.speed, 'images/kit.png', 'kit');
             this.obstacles.push(obstacle);
         }
 
@@ -111,13 +116,13 @@ class Game {
             // console.log('glovesTime', this.glovesTimer)
         }else if(this.glovesTimer < timestamp - this.glovesRate){
             this.glovesTimer = timestamp
-            const obstacle = new Obstacle(this, 60, 190, 20, 20, 1, 'images/gloves.png', 'gloves');
+            const obstacle = new Obstacle(this, 80, 190, 20, 20, this.speed, 'images/gloves.png', 'gloves');
             this.obstacles.push(obstacle);
         }
 
         if(this.inhalerTimer < timestamp - this.inhalerRate){
             this.inhalerTimer = timestamp
-            const obstacle = new Obstacle(this, 80, 190, 20, 20, 1.3, 'images/inhaler.png', 'inhaler');
+            const obstacle = new Obstacle(this, 80, 190, 20, 20, this.speed, 'images/inhaler.png', 'inhaler');
             // const obstacle = new Obstacle(this, Math.random()*600, 0, 20, 20, 2, 'images/pill-red.png');
             this.obstacles.push(obstacle);
         }
