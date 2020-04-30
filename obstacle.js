@@ -8,8 +8,8 @@ class Obstacle {
         this.x = x;
         this.y = y;
 
-        this.width = width;
-        this.height = height
+        this.width = 20;
+        this.height = 20;
 
         this.speed = speed;
 
@@ -20,7 +20,8 @@ class Obstacle {
 
         this.inicialX = 80;
         this.inicialY = 190;
-        this.gravity = 10 
+
+        this.gravity = 2 
     }
 
     detectCollision () {
@@ -37,9 +38,6 @@ class Obstacle {
 
         console.log("runLogic is running")
 
-        console.log("this.x "+ this.x)
-
-        console.log("this.inicialX " + this.inicialX)
 
         // this.y = this.y + Math.sin(this.speed);
 
@@ -47,18 +45,15 @@ class Obstacle {
 
 
         console.log('X : ', this.inicialX, this.speed, this.game.time);
+        console.log("this.x "+ this.x)
         console.log('Y :', this.inicialY, this.gravity, this.game.time);
-        // this.x = this.inicialX + this.speed * this.game.time;
-        this.x = this.inicialX + this.speed * this.game.time;
+        console.log("this.y "+ this.y)
 
-        
-        // this.y = this.inicialY - this.gravity * this.game.time **2 
-        this.y = this.inicialY - this.gravity * this.game.time **2;
+        this.x = this.inicialX
+        this.x = this.inicialX + this.speed*2 * this.game.time**2;
 
-        // velocidade pode ser gravidade
-        //gravidade 
-
-        // this.x = this.x + this.speed;
+        this.y = this.inicialY
+        this.y = this.inicialY + this.gravity * this.game.time **2;
     }
     
     runLogicVirus () {

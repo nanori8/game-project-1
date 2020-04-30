@@ -15,15 +15,17 @@ class Game {
         this.inhalerRate = 3000 //one new inhaler every 3 seconds
 
         this.virusTimer  = 0
-        this.virusRate = 4000 //one new inhaler every 5 seconds
-
-        this.time = 0
+        this.virusRate = 400000 //one new inhaler every 5 seconds
 
         this.setKeyBindings();
         
         this.reset();
-
+        
+        this.inicialX = this.inicialX;
+        this.inicialY =  this.inicialY;
+        
         this.speed = 1
+        this.time = 0
     }
     
     
@@ -52,11 +54,11 @@ class Game {
         this.drawGame();
         //console.log('loop is running')
 
-        console.log('time is increasing')    
-        this.time += 0.1;
-
+        
         if (this.running) {
-           window.requestAnimationFrame(timestamp => this.loop(timestamp))
+            window.requestAnimationFrame(timestamp => this.loop(timestamp))
+            console.log('time is increasing')    
+
         }
     }
     
@@ -69,6 +71,10 @@ class Game {
         for(let i = 0; i< this.obstacles.length;i++){
             const obstacle = this.obstacles[i]
             const obstacleType = obstacle.imageName
+
+            this.x = this.inicialX;
+            this.y =  this.inicialY;
+
             // const obstacleSpeed= obstacle.speed
 
             //run the logic for the obstacles
@@ -77,7 +83,7 @@ class Game {
             if(obstacle.imageName === 'virus')
             {
                 obstacle.runLogicVirus()
-                obstacle.speed = obstacle.speed + 5
+                obstacle.speed = obstacle.speed + 0,1;
                 ;
             } else {obstacle.runLogic()};
             
@@ -91,7 +97,7 @@ class Game {
                 this.scoreboard.updateScore(obstacleType)
             }
         }
-        
+        this.time += 0.02;
     }
     
     arrayObstacles (timestamp) {
@@ -105,7 +111,7 @@ class Game {
         //medicalKit will be generating every 1.5 sconds
         if(this.medicalKitTimer < timestamp - this.medicalKitRate){
             this.medicalKitTimer = timestamp
-            const obstacle = new Obstacle(this, 80, 190, 20, 20, this.speed, 'images/kit.png', 'kit');
+            const obstacle = new Obstacle(this, this.inicialX + 10, this.inicialY, 20, 20, this.speed, 'images/kit.png', 'kit');
             this.obstacles.push(obstacle);
         }
 
@@ -116,13 +122,13 @@ class Game {
             // console.log('glovesTime', this.glovesTimer)
         }else if(this.glovesTimer < timestamp - this.glovesRate){
             this.glovesTimer = timestamp
-            const obstacle = new Obstacle(this, 80, 190, 20, 20, this.speed, 'images/gloves.png', 'gloves');
+            const obstacle = new Obstacle(this, this.inicialX, this.inicialY, 20, 20, this.speed, 'images/gloves.png', 'gloves');
             this.obstacles.push(obstacle);
         }
 
         if(this.inhalerTimer < timestamp - this.inhalerRate){
             this.inhalerTimer = timestamp
-            const obstacle = new Obstacle(this, 80, 190, 20, 20, this.speed, 'images/inhaler.png', 'inhaler');
+            const obstacle = new Obstacle(this, this.inicialX, this.inicialY, 20, 20, this.speed, 'images/inhaler.png', 'inhaler');
             // const obstacle = new Obstacle(this, Math.random()*600, 0, 20, 20, 2, 'images/pill-red.png');
             this.obstacles.push(obstacle);
         }
@@ -148,7 +154,18 @@ class Game {
     }
     
     start () {
+        const instructionsimage = new Image();
+
+        instructionsimage.src = 'images/instructions.png';
+        
+        instructionsimage.addEventListener('load', () =>{
+            context.drawImage(instructionsimage, 0, 0)
+        })
+
+        context.drawImage(instructionsimage, 0, 0)
+
         this.running = true;
+
         this.loop();
     }
 
@@ -158,8 +175,16 @@ class Game {
 
     gameOver () {
         const context = this.context;
-        
-        alert("GAME OVER");
+        const gameoverimage = new Image();
+
+        gameoverimage.src = 'images/gameover.png';
+        gameoverimage.addEventListener('load', () =>{
+            context.drawImage(gameoverimage, 0, 0)
+        })
+
+        context.drawImage(gameoverimage, 0, 0)
+
+        // alert("GAME OVER");
         this.running = false;
         this.reset();
         }
@@ -170,7 +195,7 @@ class Game {
         this.character = new Character (this, 300, 400, 75, 30);
             
         this.background = new Background(this);
-      
+    
         this.obstacles=[]
                 
         this.scoreboard = new Scoreboard(this);
