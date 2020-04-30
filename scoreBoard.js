@@ -7,11 +7,8 @@ class Scoreboard {
 
     updateScore (obstacleType) {
       console.log('update score called')
+      // debugger;
       switch (obstacleType) {
-        case 'virus':
-          this.game.score = this.game.score -40;
-          if( this.game.score<0){this.game.gameOver()};
-          break;
         case 'kit':
           this.game.score = this.game.score + 60; 
           break;
@@ -20,6 +17,13 @@ class Scoreboard {
           break;
         case 'gloves':
           this.game.score = this.game.score + 5;
+          break;
+        case 'virus':
+          // console.log(this.game.score)
+          this.game.score = this.game.score -40;
+          // if(this.game.score<0){
+          //   console.log('this game score called')
+          //   this.game.gameOver()};
           break;
         }
   }

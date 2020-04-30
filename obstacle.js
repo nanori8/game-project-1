@@ -50,20 +50,17 @@ class Obstacle {
                 }
     }
 
-    detectHospitalEntry () {
-        console.log('this.hospitaly', this.hospitaly)
-        console.log('this.y', this.y)
-        console.log('this.height', this.height)
+    // detectHospitalEntry () {
+    //     // console.log('this.hospitaly', this.hospitaly)
+    //     // console.log('this.y', this.y)
+    //     // console.log('this.height', this.height)
 
-        if ((this.y + this.height) <= (this.hospitaly)
-
-            // && this.x + this.width > this.game.character.x
-            // && this.x < (this.game.character.x + this.game.character.width)
-            ) {
-                console.log('collision true')
-                return true
-            }
-        }
+    //     if ((this.y - this.height) < (this.hospitaly)
+    //         ) {
+    //             console.log('collision true')
+    //             return true
+    //         }
+    //     }
     
     runLogicVirus () {
         this.y++
@@ -91,9 +88,9 @@ class Obstacle {
         const b = this.toHospitalEquationB
         this.x += this.hospitalTime
         this.y = a * this.x + b
-        console.log('x ',this.x)
-        console.log('t ',this.y)
-        this.detectHospitalEntry()
+        // console.log('x ',this.x)
+        // console.log('t ',this.y)
+        // this.detectHospitalEntry()
     }
     
 
