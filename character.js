@@ -48,6 +48,7 @@ class Character {
         } else {this.x = $canvas.width - this.width;
         }
         if(this.x > 350) {
+            this.game.running = false
             this.game.gameOver();
         }
     }     

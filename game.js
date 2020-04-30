@@ -21,32 +21,30 @@ class Game {
         
         this.reset();
         
-        this.inicialX = this.inicialX;
-        this.inicialY =  this.inicialY;
-        
+        this.running = false; 
+
         this.speed = 1
         this.time = 0
     }
     
     
     setKeyBindings () {
-        document.addEventListener('keydown', (event) => {
+           document.addEventListener('keydown', (event) => {
            const keyCode = event.keyCode;
            switch (keyCode) {
                case 37:
                event.preventDefault();
                this.character.moveLeft('left');
-               this.drawGame();
+            //    this.drawGame();
                break;
              case 39:
                  event.preventDefault();
                this.character.moveRight('right');
-               this.drawGame();
+            //    this.drawGame();
             break;
            }
         });
     }
-    
     
     loop (timestamp) {       
         this.arrayObstacles(timestamp)
@@ -160,12 +158,15 @@ class Game {
       }
     
     drawGame () {
-        this.clearCanvas();
-        this.drawInstructions
-        this.background.draw();
-        this.character.draw();
-        this.obstacleDraw()
-        this.scoreboard.draw();
+
+        if(this.running === true) {
+console.log('im draw game and im running')
+            this.clearCanvas();
+            this.background.draw();
+            this.character.draw();
+            this.obstacleDraw()
+            this.scoreboard.draw();
+    }
     }
     
     start () {
@@ -178,6 +179,8 @@ class Game {
     }
 
     gameOver () {
+        this.running = false;
+        
         const context = this.context;
         const gameoverimage = new Image();
 
@@ -188,11 +191,13 @@ class Game {
 
         context.drawImage(gameoverimage, 0, 0)
 
-        // alert("GAME OVER");
-        this.running = false;
-        this.reset();
+
+        // document.onkeydown = function (e) {
+        //     console.log('function called')
+        //     return false;}
+
+        // this.reset();
         }
-        
         
 
     reset () {
@@ -207,6 +212,6 @@ class Game {
         this.score = 0; 
         this.speed = 1;
 
-        this.drawGame();
+        // this.drawGame();
     }
 }
