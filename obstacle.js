@@ -57,7 +57,8 @@ class Obstacle {
 
         if (this.y - this.height < this.hospitaly
         && this.x + this.width > this.hospitalX)
-         {console.log('collision true')
+         {
+            //  console.log('collision true')
                 return true
             }
         }

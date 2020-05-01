@@ -7,16 +7,16 @@ class Game {
 
         this.medicalKitTimer = 0
         this.medicalKitRate = 4000 //one new obstacle every 4 seconds
-
+        
         this.glovesTimer  = 0
         this.glovesRate = 2000 //one new obstacle every 2 seconds
         
         this.inhalerTimer  = 0
         this.inhalerRate = 3000 //one new obstacle every 3 seconds
-
+        
         this.virusTimer  = 0
         this.virusRate = 4000 //one new obstacle every 4 seconds
-
+        
         this.setKeyBindings();
         
         this.reset();
@@ -25,6 +25,8 @@ class Game {
 
         this.speed = 1
         this.time = 0
+
+        this.gameMusic = new Audio ("sounds/GameLoop.mp3")
     }
     
     
@@ -94,7 +96,7 @@ class Game {
                     i++
                     const hitVirus = new Audio ("sounds/virus_sound.mp3")
                     hitVirus.play()
-                // Move the item to the hospital
+                    // Move the item to the hospital
                 }else{
                     obstacle.toHospital = true
                     const a  = (-hospitalY + obstacle.y) / (-hospitalX + obstacle.x)
@@ -167,18 +169,31 @@ class Game {
             this.scoreboard.draw();
     }
     }
+
+    // gameMusic() {
+    //     if (!this.running) {
+    //         console.log('audio is stoped')
+    //         gameMusic.pause();
+    //         // gameMusic.currentTime=0;
+    //     } else {
+    //         console.log('audio is playing')
+    //         gameMusic.play()}
+    // }
     
     start () {
         this.running = true;
+        this.gameMusic.play();
         this.loop();
     }
 
     pause () {
         this.running = false;
+        this.gameMusic.pause();
     }
 
     gameOver () {
         this.running = false;
+        this.gameMusic.pause();
         
         const context = this.context;
         const gameoverimage = new Image();
@@ -196,6 +211,7 @@ class Game {
         
 
     reset () {
+        
         this.character = new Character (this, 300, 400, 75, 30);
             
         this.background = new Background(this);

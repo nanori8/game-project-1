@@ -7,7 +7,6 @@ class Background {
     draw () {
         const context = this.game.context;
         const backgroundimage = new Image();
-        console.log('im running')
         backgroundimage.src = 'images/background_LF.png';
         backgroundimage.addEventListener('load', () =>{
             context.drawImage(backgroundimage, 0, 0)
