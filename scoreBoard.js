@@ -7,7 +7,6 @@ class Scoreboard {
 
     updateScore (obstacleType) {
       console.log('update score called')
-      // debugger;
       switch (obstacleType) {
         case 'kit':
           this.game.score = this.game.score + 60; 

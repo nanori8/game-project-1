@@ -92,6 +92,8 @@ class Game {
                     this.scoreboard.updateScore(obstacleType)
                     this.obstacles.splice(i, 1) // Delete object
                     i++
+                    const hitVirus = new Audio ("sounds/virus_sound.mp3")
+                    hitVirus.play()
                 // Move the item to the hospital
                 }else{
                     obstacle.toHospital = true
@@ -106,6 +108,9 @@ class Game {
                 this.obstacles.splice(i, 1) // Delete object
                 i++
                 this.scoreboard.updateScore(obstacleType)
+                // Play sound
+                const enterHospitalSound = new Audio ("sounds/hospital_sound.wav")
+                enterHospitalSound.play()
             }
 
         this.time += 0.02;
@@ -183,6 +188,10 @@ class Game {
             context.drawImage(gameoverimage, 0, 0)
         })
         context.drawImage(gameoverimage, 0, 0)
+        
+        const gameoverSound = new Audio ("sounds/GameOver.wav")
+        gameoverSound.play()
+        
         }
         
 
