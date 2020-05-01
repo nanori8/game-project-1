@@ -116,7 +116,7 @@ class Game {
         // Virus will be generating         
         if(this.virusTimer < timestamp - this.virusRate){
             this.virusTimer = timestamp
-            const obstacle = new Obstacle(this, Math.random()*600, 10, 20, 20, this.speed*1/2,'images/virus.png', 'virus');
+            const obstacle = new Obstacle(this, Math.random()*600, 10, 30, 30, this.speed,'images/virus.png', 'virus');
             this.obstacles.push(obstacle);
         }
 

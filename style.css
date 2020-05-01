@@ -35,26 +35,12 @@ button {
 
 button:hover {
     box-shadow: 11px 13px 51px -6px rgba(110,109,110,1);
-    text
 }
 
 .logo-button {
-    width: 60px;
+    width:60px;
 }
 
+/* @media (max-width: 1000px) {
 
-/* #start {
-    background-color: #ffdd00;
-    color: #968300;
-}
-
-#pause {
-    background-color: #bababa;
-    color: #545454;
-}
-
-#reset {
-    background-color: #ff9900;
-    color: #5c3700;
-    
-} */
+    } */

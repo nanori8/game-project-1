@@ -20,7 +20,7 @@ class Scoreboard {
           break;
         case 'virus':
           this.game.score = this.game.score -40;
-          if(this.game.score<0){
+          if(this.game.score<0 && Number(this.game.score)){
             this.game.gameOver()
           this.game.running = false};
           break;
