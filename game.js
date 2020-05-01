@@ -181,6 +181,7 @@ class Game {
     // }
     
     start () {
+        this.reset();
         this.running = true;
         this.gameMusic.play();
         this.loop();
@@ -206,6 +207,7 @@ class Game {
         
         const gameoverSound = new Audio ("sounds/GameOver.wav")
         gameoverSound.play()
+    
         
         }
         
