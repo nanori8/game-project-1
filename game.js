@@ -12,10 +12,10 @@ class Game {
         this.glovesRate = 2000 //one new obstacle every 2 seconds
         
         this.inhalerTimer  = 0
-        this.inhalerRate = 3000 //one new inhaler every 3 seconds
+        this.inhalerRate = 3000 //one new obstacle every 3 seconds
 
         this.virusTimer  = 0
-        this.virusRate = 4000 //one new inhaler every 5 seconds
+        this.virusRate = 4000 //one new obstacle every 4 seconds
 
         this.setKeyBindings();
         
@@ -35,12 +35,10 @@ class Game {
                case 37:
                event.preventDefault();
                this.character.moveLeft('left');
-            //    this.drawGame();
                break;
              case 39:
                  event.preventDefault();
                this.character.moveRight('right');
-            //    this.drawGame();
             break;
            }
         });
@@ -69,14 +67,13 @@ class Game {
             const hospitalX = 600
             const hospitalY = 190
             
-            // delete items as they hit the ground
-
+            // Delete items as they hit the ground
             if(obstacle.y - obstacle.height > 390 ) {
-                this.obstacles.splice(i, 1) // Delete object
+                this.obstacles.splice(i, 1)
                 i++
             } 
+
             //run the logic for the obstacles
-            
             if(obstacle.imageName === 'virus')
             {
                 obstacle.runLogicVirus()
@@ -86,10 +83,12 @@ class Game {
             
             //run the collision detection
             if(obstacle.detectCollision()){
+
                 //collision detected!
                 //remove the obstacle from the array
 
                 if(obstacle.imageName === 'virus'){
+                    // Update score for the Virus
                     this.scoreboard.updateScore(obstacleType)
                     this.obstacles.splice(i, 1) // Delete object
                     i++
@@ -100,10 +99,10 @@ class Game {
                     obstacle.toHospitalEquationA = a
                     obstacle.toHospitalEquationB = obstacle.y - a * obstacle.x
                 }
-                //update the score
             }
-
+            // Update score for the Hospital
             if(obstacle.detectHospitalEntry()){
+                //Collision with the hospital detected
                 this.obstacles.splice(i, 1) // Delete object
                 i++
                 this.scoreboard.updateScore(obstacleType)
@@ -114,40 +113,36 @@ class Game {
 }
     
     arrayObstacles (timestamp) {
-        
+        // Virus will be generating         
         if(this.virusTimer < timestamp - this.virusRate){
             this.virusTimer = timestamp
             const obstacle = new Obstacle(this, Math.random()*600, 10, 20, 20, this.speed*1/2,'images/virus.png', 'virus');
             this.obstacles.push(obstacle);
         }
 
-        //medicalKit will be generating every 1.5 sconds
+        // MedicalKit will be generating 
         if(this.medicalKitTimer < timestamp - this.medicalKitRate){
             this.medicalKitTimer = timestamp
             const obstacle = new Obstacle(this, this.inicialX + 10, this.inicialY, 20, 20, this.speed, 'images/kit.png', 'kit');
             this.obstacles.push(obstacle);
         }
 
-        //gloves will be generating every 2 seconds
+        // Gloves will be generating
         if(this.glovesTimer === 0 || !this.glovesTimer){
-            // console.log('glovesTime', this.glovesTimer)
             this.glovesTimer = timestamp
-            // console.log('glovesTime', this.glovesTimer)
         }else if(this.glovesTimer < timestamp - this.glovesRate){
             this.glovesTimer = timestamp
             const obstacle = new Obstacle(this, this.inicialX, this.inicialY, 20, 20, this.speed, 'images/gloves.png', 'gloves');
             this.obstacles.push(obstacle);
         }
 
+        // Inhaler will be generating
         if(this.inhalerTimer < timestamp - this.inhalerRate){
             this.inhalerTimer = timestamp
             const obstacle = new Obstacle(this, this.inicialX, this.inicialY, 20, 20, this.speed, 'images/inhaler.png', 'inhaler');
-            //const obstacle = new Obstacle(this, Math.random()*600, 0, 20, 20, 2, 'images/pill-red.png');
             this.obstacles.push(obstacle);
         }
 
-
-        // console.log(this.obstacles)
     }   
 
 
@@ -160,7 +155,6 @@ class Game {
     drawGame () {
 
         if(this.running === true) {
-console.log('im draw game and im running')
             this.clearCanvas();
             this.background.draw();
             this.character.draw();
@@ -188,15 +182,7 @@ console.log('im draw game and im running')
         gameoverimage.addEventListener('load', () =>{
             context.drawImage(gameoverimage, 0, 0)
         })
-
         context.drawImage(gameoverimage, 0, 0)
-
-
-        // document.onkeydown = function (e) {
-        //     console.log('function called')
-        //     return false;}
-
-        // this.reset();
         }
         
 
@@ -211,7 +197,5 @@ console.log('im draw game and im running')
         
         this.score = 0; 
         this.speed = 1;
-
-        // this.drawGame();
     }
 }

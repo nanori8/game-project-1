@@ -3,42 +3,43 @@
 }
 
 body {
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    background-color: #c5e3c0; 
 }
 
 section {
-    /* display: block; */
-    padding-left: 10px;
+    margin: 0 auto;
+    text-align: center;
+
 }
-div {
+article {
+    display: flex;
+    /* justify-content:space-between: */
     padding-top: 10px;
     padding-bottom: 10px;
-    display: flex;
-    justify-content:space-around
 }
 
 canvas {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: groove;
-    border-color: lightgoldenrodyellow;
+    border-radius: 20px;
+    border-color: #97d8e2;
+    border-style: solid;
 }
 
 button {
-    border-radius: 5px;
-    padding: 10px;
+    border-radius: 20px;
+    padding: 5px;
+    margin: 10px;
     border-style: none;
-    background-color: white;
-    box-shadow: 11px 13px 51px -4px #ffdd00;
+    background-color: #c5e3c0; 
 }
 
 button:hover {
     box-shadow: 11px 13px 51px -6px rgba(110,109,110,1);
+    text
 }
 
 .logo-button {
-    width: 20px;
+    width: 60px;
 }
 
 
